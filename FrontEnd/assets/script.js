@@ -25,9 +25,7 @@ fetch("http://localhost:5678/api/works")
 
 
 
-/* Au lieu du imagesource creer un create element et un appen
-child qui va creer a chaque boucle une figure/img/figcaption comme dans le html, pas besoin d'id pcq y en a pas
-je dois pas copier coller le code du HTML 
+/* 
 Attribuer une classe CSS en JS pour le mdp oublié
 Mettre les filtres en format texte puis JS simple
 */
