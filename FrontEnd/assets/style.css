@@ -335,7 +335,7 @@ input[type="submit"] {
 	height: 36px;
 }
 
-.login form a{
+.login form a {
 	margin: 31px auto 0px auto;
 	text-decoration: underline;
 }
@@ -343,6 +343,40 @@ input[type="submit"] {
 
 /*classe pour les filtres*/
 
+.categories {
+	display: flex;
+	justify-content: center;
+	margin: 50px 0px;
+}
+
+.button {
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	text-align: center;
+	height: 37px;
+	padding: 0 1.6rem;
+	color: #1D6154;
+	background-color: transparent;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	margin: 0px 5px;
+	cursor: pointer;
+}
+
+/* gallery */
+
+figcaption {
+	color: #3D3D3D;
+	font-size: 13px;
+	font-family: Work Sans;
+	font-weight: 400;
+	word-wrap: break-word;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
 
 footer nav ul {
 	display: flex;

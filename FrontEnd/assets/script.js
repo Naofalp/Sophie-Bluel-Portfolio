@@ -1,4 +1,5 @@
-const gallery = document.getElementsByClassName('gallery')
+const gallery = document.getElementsByClassName('gallery');
+const portfoliosection = document.querySelector('.portfolio');
 
 
 fetch("http://localhost:5678/api/works")
@@ -16,10 +17,44 @@ fetch("http://localhost:5678/api/works")
             figure.appendChild(figcaption)
         }
     });
+;
+
+fetch("http://localhost:5678/api/categories")
+    .then(reponse => reponse.json())
+    .then(categories => {
+
+        const filters = document.createElement("div");
+        filters.classList.add('categories');
+
+        const ButtonAll = document.createElement("button");
+        ButtonAll.textContent = 'Tous';
+        ButtonAll.classList.add('button', 'tous');
+        filters.appendChild(ButtonAll)
+
+        for (let category of categories) {
+            const button = document.createElement('button');
+            button.setAttribute('class', 'button');
+            button.textContent = `${category.name}`;
+            filters.appendChild(button)
+        }
+
+        portfoliosection.insertBefore(filters, gallery[0]);
 
 
-
-
+        // Fonction pour filtrer les images
+        function filterImages(categoryName) {
+            const allImages = gallery.querySelectorAll('figure');
+            allImages.forEach(image => {
+                const imageCategory = image.dataset.category;
+                if (categoryName === "Tous" || imageCategory === categoryName) {
+                    image.style.display = "block";
+                } else {
+                    image.style.display = "none";
+                }
+            });
+        }
+    });
+;
 
 
 

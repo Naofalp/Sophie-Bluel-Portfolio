@@ -32,8 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 let error = document.createElement('p');
                 error.textContent = 'Identifiant ou mot de passe incorrect';
                 /* error.style = nom classe css */
-                form.appendChild(error);
-            }
+                form.parentNode.insertBefore(error, form);            }
+
+                
         } catch (error) {
             console.error('Erreur inattendue:', error);
             alert('Une erreur est survenue lors de la connexion.');
