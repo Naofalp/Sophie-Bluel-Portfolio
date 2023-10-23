@@ -8,11 +8,24 @@ async function Loged() {
     if (window.sessionStorage.getItem('token') === null) {
         categoriesFilters();
     } else {
-        topBarBlack()
+        topBarBlack();
+        Logout();
+        //Ajouter modale qui apparait
     }
 }
 
-// LogOut
+// Logout
+function Logout() {
+    const logoutButton = document.getElementById('login');
+    logoutButton.textContent = 'logout';
+    logoutButton.setAttribute ('href','index.html') /* Rafraichie la page au click*/
+    logoutButton.addEventListener('click', () => {
+        window.sessionStorage.removeItem('token');
+        console.log('Vous êtes déconnecté');
+        alert('Vous êtes déconnecté.');
+        //Comment rester sur l'ecran d'acceuil ?
+    });
+}
 
 // TopBar Mode Edition
 function topBarBlack() {
@@ -91,13 +104,6 @@ async function categoriesFilters() {
         });
     ;
 }
-
-
-
-
-
-
-
 
 
 works();
