@@ -1,7 +1,20 @@
 const gallery = document.getElementsByClassName('gallery');
 const portfoliosection = document.querySelector('.portfolio');
+//passer le tout en create elemenent = ... // setattribute(...,...) ou textcontent ='...'
 
-// Top édition noir
+
+// Affichage admin connecté
+async function Loged() {
+    if (window.sessionStorage.getItem('token') === null) {
+        categoriesFilters();
+    } else {
+        topBarBlack()
+    }
+}
+
+// LogOut
+
+// TopBar Mode Edition
 function topBarBlack() {
     const div = document.createElement("div");
     div.setAttribute('class', 'TopBar');
@@ -17,7 +30,6 @@ function topBarBlack() {
     div.appendChild(span);
 }
 
-//passer le tout en create elemenent = ... // setattribute(...,...) ou textcontent ='...'
 
 
 async function works() {
@@ -89,8 +101,8 @@ async function categoriesFilters() {
 
 
 works();
-categoriesFilters();
-topBarBlack();
+//categoriesFilters();
+Loged();
 
 /* 
 Attribuer une classe CSS en JS pour le mdp oublié
