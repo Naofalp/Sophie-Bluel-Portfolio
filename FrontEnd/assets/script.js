@@ -1,7 +1,23 @@
 const gallery = document.getElementsByClassName('gallery');
 const portfoliosection = document.querySelector('.portfolio');
 
+// Top édition noir
+function topBarBlack() {
+    const div = document.createElement("div");
+    div.setAttribute('class', 'TopBar');
 
+    const span = document.createElement("span");
+    span.textContent = 'Mode édition';
+
+    const icon = document.createElement("i")
+    icon.setAttribute('class', 'fa-regular fa-pen-to-square')
+
+    document.querySelector('body').prepend(div);
+    div.appendChild(icon);
+    div.appendChild(span);
+}
+
+//passer le tout en create elemenent = ... // setattribute(...,...) ou textcontent ='...'
 
 
 async function works() {
@@ -74,7 +90,7 @@ async function categoriesFilters() {
 
 works();
 categoriesFilters();
-
+topBarBlack();
 
 /* 
 Attribuer une classe CSS en JS pour le mdp oublié
