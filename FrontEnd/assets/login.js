@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
                 console.log('Connexion réussie');
-                window.location = 'index.html'; // Redirige l'utilisateur vers la page d'accueil
+               // window.location = 'index.html';  Redirige l'utilisateur vers la page d'accueil
                 alert('Connexion réussie !');
             } else {
                 console.error('Échec de la connexion');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const result = await response.json();
             const token = result.token;
-            window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoken.
+            window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoké.
 
 
         } catch (error) {
