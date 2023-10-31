@@ -187,12 +187,18 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	gap: 25px; /*Ajout du gap*/
 
 }
 
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+}
+
+nav li img {
+	width: 20px;
+    height: 20px;
 }
 
 li:hover {
@@ -202,20 +208,23 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-left: 75px; /* MODIFICATION DE LIMAGE ET DU TXT qui etaient trop gros+ pas centré+couleur grise*/
+    gap: 40px;
 }
 
 #introduction figure {
 	flex: 1
 }
 
-#introduction img {
+#introduction img { /* MODIFICATION DE LIMAGE ET DU TXT qui etaient trop gros+ pas centré+couleur grise*/
 	display: block;
 	margin: auto;
-	width: 80%;
+    width: 474px;
+    height: 355px;
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
 }
 
 #introduction h2 {
@@ -223,20 +232,25 @@ li:hover {
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
+	width: 404px;
+	color: #3D3D3D;
 }
 
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 3em;
+	margin-top: 4em;
 }
 
 .gallery {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	justify-content: center;
+	grid-template-columns: 0fr 0fr 0fr; /* Modification de la grid pour que 
+	toute les images fassent la mm taille + centrée= espace en bas*/
+    grid-column-gap: 20px;
+    grid-row-gap: 45px;
 }
 
 .gallery img {
@@ -246,7 +260,12 @@ li:hover {
 
 #contact {
 	width: 50%;
-	margin: auto;
+    margin: auto;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }
 
 #contact>* {
@@ -259,14 +278,17 @@ li:hover {
 }
 
 #contact form {
-	text-align: left;
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
+    text-align: left;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
 }
 
 #contact input {
 	height: 50px;
+	width: 379px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -279,20 +301,27 @@ li:hover {
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	width: 379px;
 }
 
-input[type="submit"] {
+#contact form input[type="submit"] {
 	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+    margin: 2em auto 2em auto;
 }
 
 /* PAGE LOGIN */
+
+.active {
+	font-weight: 600;
+}
+
+/*CA MARCHE PAS, voir avec la police qui accepte?*/
 
 .login {
 	width: 30%;
@@ -354,7 +383,8 @@ input[type="submit"] {
 }
 
 .TopBar span,
-.fa-regular, .fa-pen-to-square {
+.fa-regular,
+.fa-pen-to-square {
 	color: white;
 	font-size: 16px;
 	font-family: Work Sans;
@@ -367,7 +397,9 @@ input[type="submit"] {
 .categories {
 	display: flex;
 	justify-content: center;
-	margin: 50px 0px;
+	margin-bottom: 50px;
+	margin-top: -30px;
+	/* Pour combler l'espace créer a son apparition*/
 }
 
 .button {
@@ -399,6 +431,11 @@ figcaption {
 	margin-bottom: 0px;
 }
 
+.gallery figure {
+	width: 310px; /*Modification de la taille des image trop grosses par defaut*/
+    height: 413px;
+}
+
 /*Modal1*/
 
 .modal {
@@ -414,11 +451,96 @@ figcaption {
 }
 
 .modal-wrapper {
-	overflow: auto;
-	width: 600px;
-	max-width: 100vh;
-	padding: 20px;
-	background-color: #FFFEF8;
+	background-color: white;
+	position: absolute;
+	height: auto;
+	width: auto;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.js-modal-close {
+	cursor: pointer;
+	position: relative;
+	border: none;
+	color: black;
+	margin-left: auto;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	font-size: 20px;
+	background-color: #FFFFFF;
+	top: 5px;
+	right: 35px;
+	cursor: pointer;
+}
+.modal-title {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	color: black;
+	font-size: 26px;
+	font-family: Work Sans;
+	font-weight: 400;
+	word-wrap: break-word
+}
+
+
+.js-modal-gallery {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    margin: 50px 90px 0px 90px;
+    padding-bottom: 40px;
+    width: 437px;
+    border-bottom: 1px solid #B3B3B3;
+}
+
+.modal-image {
+	display: flex;
+	flex-direction: row;
+    margin-bottom: 25px;
+    width: 77px;
+    margin-right: 10px;
+}
+
+.modal-image img {
+	width: 77px;
+	height: 105px;
+	object-fit: cover;
+	margin-bottom: 5px;
+}
+
+.fa-trash-can {
+	color: white;
+	background: #000000;
+	border-radius: 2px;
+	width: 8px;
+	height: 10px;
+	padding: 3px 4px;
+	font-size: 10px;
+	position: relative;
+	top: 5px;
+	right: 20px;
+}
+
+.js-modal-addButton {
+	width: 237px;
+	height: 36px;
+	border: none;
+	margin: 40px auto 40px auto;
+	font-family: Syne;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 36px;
+	text-align: center;
+	color: #ffffff;
+	background: #1d6154;
+	border-radius: 60px;
+	cursor: pointer;
 }
 
 
