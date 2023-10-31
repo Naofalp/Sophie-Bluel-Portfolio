@@ -32,19 +32,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
                 console.log('Connexion réussie');
-               // window.location = 'index.html';  Redirige l'utilisateur vers la page d'accueil
+                window.location = 'index.html'; //  Redirige l'utilisateur vers la page d'accueil
                 alert('Connexion réussie !');
             } else {
                 console.error('Échec de la connexion');
                 let error = document.createElement('p');
                 error.textContent = 'Identifiant ou mot de passe incorrect';
-                /* error.style = nom classe css */
+                /* error.style = nom classe css en rouge */
                 form.parentNode.insertBefore(error, form);
             }
 
             const result = await response.json();
             const token = result.token;
-            window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoké.
+            window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoké ?
 
 
         } catch (error) {
