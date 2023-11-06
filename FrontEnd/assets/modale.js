@@ -6,13 +6,13 @@ const modal2 = document.querySelector("#modal2");
 
 const openModal = function (e) {
     e.preventDefault()
-    modal = document.querySelector(e.target.getAttribute('href'));
+    modal = modal1;
     modalGalleryWorks();
     modal.style.display = null
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-modal', 'true')
     modal.addEventListener('click', closeModal)
-    console.log(document.getElementById("js-modal1-close"))
+    //console.log(document.getElementById("js-modal1-close"))
     document.getElementById("js-modal1-close").addEventListener('click', closeModal)
     document.getElementById("js-modal1-stop").addEventListener('click', stopPropagation)
     document.getElementById("BouttonModal2").addEventListener('click',openModalAdd)
@@ -73,16 +73,17 @@ async function modalGalleryWorks() {
 
 // Deuxieme modale 
 
-let modalProjet = null;
+let modalAdd = null;
 
 const openModalAdd = function (e) {
     closeModal(e);
     e.preventDefault()
-    //console.log(e.target)
-    modalAdd = e.target
-    
+    console.log(modal2)
+
+    modalAdd = modal2; 
+
     modalAdd.style.display = null
-    //modalAdd.setAttribute ("display","contents") soit ca soit     modal.style.display = null
+
     modalAdd.removeAttribute("aria-hidden")
     modalAdd.setAttribute("aria-modal", "true")
 
@@ -90,9 +91,16 @@ const openModalAdd = function (e) {
     document.getElementById("js-modal2-close").addEventListener("click", closeModalAdd)
     document.getElementById("js-modal2-stop").addEventListener("click", stopPropagation)
 
-   // document.getElementById("js-modal-return").addEventListener("click", backToModal) 
-    //Fonction backtomodal1
+    document.getElementById("js-modal-return").addEventListener("click", backToModal1) 
 };
+
+
+//Fonction backtomodal1
+const backToModal1 = function (e) {
+    e.preventDefault()
+    closeModalAdd(e)
+    openModal(e)
+}
 
 
 // Fermeture de la modale projet
@@ -102,13 +110,8 @@ const closeModalAdd = function (e) {
 
     modalAdd.setAttribute("aria-hidden", "true")
     modalAdd.removeAttribute("aria-modal")
-
-    document.querySelector(".js-modal-close").removeEventListener("click", closeModalAdd)
-    document.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
+    
     modalAdd = null
 
     closeModal(e)
 };
-
-// A FAIRE : regarder pq la modale 2 saffiche pas.. cf openmodalAdd. Elle marche dans le code
-//donc ca doit être un delire avec ligne 83,84,..,88
