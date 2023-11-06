@@ -88,19 +88,47 @@
 
 			<!-- Modale 2 AddImage-->
 
-			<aside id="modal2" class="modal" aria-hidden="true"  style="display: none;">
+			<aside id="modal2" class="modal" aria-hidden="true" style="display: none;">
 				<div id="js-modal2-stop" class="modal-wrapper js-modal-stop">
 					<div class="modal-add-buttons">
 						<button href="" class="js-modal-return">
 							<i class="fa-solid fa-arrow-left"></i>
 						</button>
-						<button href="" id="js-modal2-close" class="js-modal-close">
+						<button href="" id="js-modal2-close" class="js-modal2-close">
 							<i class="fa-solid fa-xmark"></i>
 						</button>
 					</div>
 
 					<h2 class="modal-title">Ajout photo</h2>
+
+					<form class="modal-add-form" action="" enctype="multipart/form-data">
+
+						<div class="form-group-photo">
+							<i class="fa-regular fa-image"></i>
+							<label for="photo">+ Ajouter photo</label> <!--ou boutton -->
+							<input type="file" name="photo" id="photo" class="js-image">
+						</div>
+
+						<div class="form-group-title">
+							<label for="titre">Titre</label>
+							<input class="js-title" type="text" name="titre" id="titre">
+						</div>
+
+						<div class="form-group-id">
+							<label for="categorie">Catégorie</label>
+							<select name="categorie" id="categorieBarre" class="js-categoryId">
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & restaurants</option>
+							</select>
+						</div>
+
+						<input type="submit" class="js-modal-addButton" value="Valider">
+						<!--Faire un effet JS pour que la class soit grise quand le forme est pas remplie-->
+					</form>
+
 				</div>
+
 			</aside>
 
 		</main>
