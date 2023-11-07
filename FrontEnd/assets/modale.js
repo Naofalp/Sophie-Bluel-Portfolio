@@ -130,15 +130,16 @@ const openModalAdd = function (e) {
     document.getElementById("js-modal2-stop").addEventListener("click", stopPropagation)
 
     document.getElementById("js-modal-return").addEventListener("click", backToModal1)
-    document.getElementById("addPhoto").addEventListener("change", addPhoto) 
-    //addPhoto est déclenchée lorsque vous sélectionnez un fichier dans l'élément input de type fichier.
+    document.getElementById("addPreview").addEventListener("change", addPreview) 
+    //addPreview est déclenchée lorsque vous sélectionnez un fichier dans l'élément input de type fichier.
 };
 
-//Ajout d'une image 
+//Ajout d'une image fontion addPhoto
+const addPhotoInput = document.getElementById("addPreview");
 const Preview = document.getElementById("Preview");
 Preview.style.display = "none";
 
-const addPhoto = function photoImage(photo) {
+const addPreview = function photoImage(photo) {
     const file = photo.target.files[0];
     console.log(file.size)
     if (file && file.size <= 4194304) {
@@ -148,7 +149,7 @@ const addPhoto = function photoImage(photo) {
             document.getElementById("Preview").style.display = "block";
             document.getElementById("icon-form").style.display = "none";
             document.getElementById("label-form").style.display = "none";
-            document.getElementById("addPhoto").style.display = "none";
+            document.getElementById("addPreview").style.display = "none";
             document.getElementById("image_restriction").style.display = "none";
             Preview.style.display = "block";
         };
@@ -157,8 +158,30 @@ const addPhoto = function photoImage(photo) {
         alert("Le fichier dépasse la taille maximale autorisée de 4 Mo.");
         Preview.style.display = "none";
     }
+
+    document.getElementById("js-modal-return").addEventListener("click", cancelAddPreview);
+    document.getElementById("js-modal2-close").addEventListener("click", cancelAddPreview)
 }
-//Le bouton ne marche plus + ca s'affiche au deuxieme clique sur le bouton. Le if indique une erreur pourtant il se lance 
+
+//Annulation de la fonction addPreview au clic de retour ou close.
+const cancelAddPreview = function() {
+    addPhotoInput.removeEventListener("change", addPreview);
+    
+    addPhotoInput.value = null;
+
+    Preview.src = "";
+    document.getElementById("Preview").style.display = "none";
+    document.getElementById("icon-form").style.display = "block";
+    document.getElementById("label-form").style.display = "block";
+    document.getElementById("addPreview").style.display = "block";
+    document.getElementById("image_restriction").style.display = "block";
+    Preview.style.display = "none";
+
+    document.getElementById("js-modal-return").removeEventListener("click", cancelAddPreview);
+    document.getElementById("js-modal2-close").removeEventListener("click", cancelAddPreview);
+
+}
+
 
 //Fonction backtomodal1
 const backToModal1 = function (e) {
