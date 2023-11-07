@@ -500,7 +500,7 @@ figcaption {
 	flex-wrap: wrap;
 	margin: 50px 90px 0px 90px;
 	padding-bottom: 40px;
-	width: 437px;
+	width: 437px;		/*La taille de la gallery qui influe sur la modale avec les margin*/
 	border-bottom: 1px solid #B3B3B3;
 }
 
@@ -549,7 +549,7 @@ figcaption {
 	cursor: pointer;
 }
 
-/* Modal2 Add Photo*/
+/* Modal2 Add Photo*/ 
 
 .modal-add-buttons {
     display: flex;
@@ -561,7 +561,6 @@ figcaption {
     border-radius: 10px;
     font-size: 20px;
     background-color: #FFFFFF;
-    cursor: pointer;
 	margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -603,10 +602,51 @@ figcaption {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #E8F1F7;
+	background-color: #E8F1F6;
 	width: 437px;
 	height: 169px;
-	border-radius: 10px;
+	border-radius: 2px;
+	gap: 7px
+}
+
+.form-group-photo img {
+	height: 169px;
+}
+
+.form-group-photo i {
+	font-size: 76px;
+    color: #B9C5CC;
+}
+
+.form-group-photo label {
+    width: 173px;
+    height: 36px;
+    border: none;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 36px;
+    text-align: center;
+    color: #306685;
+    background: #CBD6DC;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.form-group-photo input{
+	width: 163px;
+    height: 30px;
+    position: absolute;
+    top: 238px;
+}
+
+.form-group-photo span{
+	color: #444444;
+    font-size: 10px;
+    font-family: Work Sans;
+    font-weight: 350;
+    word-wrap: break-word;
 }
 
 .form-group-title,
