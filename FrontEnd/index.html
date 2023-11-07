@@ -80,7 +80,7 @@
 					</button>
 					<h2 class="modal-title">Galerie photo</h2>
 					<div class="js-modal-gallery">
-						<!-- Gallerie + croix sur images -->
+						<!-- Gallerie + poubelle sur images -->
 					</div>
 					<a href="#modal2" id="BouttonModal2" class="js-modal-addButton">Ajouter une photo</a>
 				</div>
@@ -91,7 +91,7 @@
 			<aside id="modal2" class="modal" aria-hidden="true" style="display: none;">
 				<div id="js-modal2-stop" class="modal-wrapper js-modal-stop">
 					<div class="modal-add-buttons">
-						<button href="" class="js-modal-return">
+						<button href="" id="js-modal-return" class="js-modal-return">
 							<i class="fa-solid fa-arrow-left"></i>
 						</button>
 						<button href="" id="js-modal2-close" class="js-modal2-close">
@@ -103,11 +103,13 @@
 
 					<form class="modal-add-form" action="" enctype="multipart/form-data">
 
-						<div class="form-group-photo">
-							<i class="fa-regular fa-image"></i>
-							<label for="photo">+ Ajouter photo</label> <!--ou boutton -->
-							<input type="file" name="photo" id="photo" class="js-image">
-						</div>
+							<div class="form-group-photo">
+								<img id="Preview" src="#" alt="Preview photo">
+								<i class="fa-regular fa-image" id="icon-form"></i>
+								<label for="photo" id="label-form">+ Ajouter photo</label> <!--ou boutton -->
+								<input type="file" name="photo" id="addPhoto" class="js-image">
+								<span id="image_restriction">jpg, png : 4mo max</span>
+							</div>
 
 						<div class="form-group-title">
 							<label for="titre">Titre</label>
@@ -123,7 +125,7 @@
 							</select>
 						</div>
 
-						<input type="submit" class="js-modal-addButton" value="Valider">
+						<input type="submit" id="Addbutton" class="js-modal-addButton" value="Valider">
 						<!--Faire un effet JS pour que la class soit grise quand le forme est pas remplie-->
 					</form>
 
