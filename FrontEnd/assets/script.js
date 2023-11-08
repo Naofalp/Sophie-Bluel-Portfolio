@@ -1,7 +1,5 @@
 const gallery = document.getElementsByClassName('gallery');
 const portfoliosection = document.querySelector('.portfolio');
-//passer le tout en create elemenent = ... // setattribute(...,...) ou textcontent ='...'
-
 
 // Affichage admin connecté
 async function Loged() {
@@ -14,6 +12,8 @@ async function Loged() {
         //Ajouter modale qui apparait
     }
 }
+const token = window.sessionStorage.getItem('token')
+console.log(token + ' : token')
 
 // Logout
 function Logout() {
@@ -46,11 +46,12 @@ function topBarBlack() {
 
 //Affichage des travaux
 async function works() {
-
+    resetGallery();
     fetch("http://localhost:5678/api/works")
         .then(reponse => reponse.json())
         .then(data => {
-            console.log(data)
+            //console.log(data)
+
             for (let i = 0; i < data.length; i++) {
                 let figure = document.createElement("figure")
                 let img = document.createElement("img")
@@ -58,6 +59,7 @@ async function works() {
                 // console.log(gallery[0])
                 img.src = data[i].imageUrl
                 figcaption.textContent = data[i].title
+                //console.log(figure)
                 gallery[0].appendChild(figure)
                 figure.appendChild(img)
                 figure.appendChild(figcaption)
@@ -76,7 +78,7 @@ async function categoriesFilters() {
     fetch("http://localhost:5678/api/categories")
         .then(reponse => reponse.json())
         .then(categories => {
-           // console.log(categories)
+            //console.log(categories)
 
             const filters = document.createElement("div");
             filters.classList.add('categories');
@@ -84,15 +86,23 @@ async function categoriesFilters() {
             const ButtonAll = document.createElement("button");
             ButtonAll.textContent = 'Tous';
             ButtonAll.classList.add('button', 'tous');
-            ButtonAll.addEventListener('click', () => filterImages("Tous"));
+            ButtonAll.dataset.categoryId = 0;
+            ButtonAll.addEventListener('click', () => filterImages(0));
             filters.appendChild(ButtonAll)
+            //console.log(ButtonAll)
+
 
             for (let category of categories) {
                 const button = document.createElement('button');
                 button.setAttribute('class', 'button');
                 button.textContent = `${category.name}`;
-                button.addEventListener('click', () => filterImages(category.name));
+                button.dataset.categoryId = `${category.id}`;
+                let IDcategory = button.dataset.categoryId
+                console.log(IDcategory);
+                //Pour voir l'id relier au bouton
+                button.addEventListener('click', () => filterImages(IDcategory));
                 filters.appendChild(button)
+                //console.log(button)
             }
 
             portfoliosection.insertBefore(filters, gallery[0]);
@@ -100,20 +110,53 @@ async function categoriesFilters() {
     ;
 }
 
-// Matcher la cate works et categories. Refaire un appel API.
+//Reset la gallery
+function resetGallery() {
+    gallery[0].innerHTML = "";
+    // console.log('reset'); Afficher pour montrer que ca a reset.
+}
 
-function filterImages(categoryName) {
-    // console.log(gallery);
-    const allImages = gallery[0].querySelectorAll("figure");
-    allImages.forEach(image => {
-        const imageCategory = image.dataset.category;
-        // console.log(image)
-        if (categoryName === "Tous" || imageCategory === categoryName) {
-            image.style.display = "block";
+
+function filterImages(IDcategory) {
+    resetGallery()
+    fetch("http://localhost:5678/api/works")
+        .then(reponse => reponse.json())
+        .then(data => {
+            // SI le if marche toute la boucle en bas s'execute selon id.
+            //Trouver pourquoi ca marche quand je mets 1,2,3 mais pas quand je mets la classe qui renvoi aussi des numeros
+            if ((parseInt(IDcategory)) === 0) {
+                works()
+            }
+            else {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].categoryId === (parseInt(IDcategory))) {
+                        let figure = document.createElement("figure")
+                        let img = document.createElement("img")
+                        let figcaption = document.createElement("figcaption")
+                        img.src = data[i].imageUrl
+                        figcaption.textContent = data[i].title
+                        // Récupérez la valeur categoryId de l'image
+                        //figure.dataset.categoryId = data[i].categoryId; CA sera ca la condition du if
+                        gallery[0].appendChild(figure)
+                        figure.appendChild(img)
+                        figure.appendChild(figcaption)
+                    }
+                };
+            }
+            ;
+        })
+        
+    /*const allImages = gallery[0].querySelectorAll("figure");
+    allImages.forEach(figure => {
+        const imageCategory = figure.dataset.categoryId;
+        console.log(imageCategory)
+
+        if (imageCategory === categoryId || imageCategory === 0) {
+            figure.style.display = "block";
         } else {
-            image.style.display = "none";
-        }
-    });
+            figure.style.display = "none";
+        
+    }); A REFAIRE */
 }
 
 async function main() {
@@ -121,10 +164,15 @@ async function main() {
     categoriesFilters();
 }
 
+
+
 //main();
 // works();
 //categoriesFilters();
 Loged();
 
-// Ca marche mais ca passe toute les images en display:none, 
-//verifier que c'est bien relier a sa category name.
+/*
+Verif : 
+- Affichage different si connecté
+- Gallery mise a jour lors de changement
+*/
