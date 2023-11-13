@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Empêche la soumission par défaut
-
-        if (emailInput.value === '' || passwordInput.value === '') { // Vérifie que les champs sont remplis
+        // Vérifie que les champs sont remplis
+        if (emailInput.value === '' || passwordInput.value === '') { 
             alert('Veuillez remplir tous les champs.');
             return;
         }
@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Échec de la connexion');
                 let error = document.createElement('p');
                 error.textContent = 'Identifiant ou mot de passe incorrect';
-                /* error.style = nom classe css en rouge */
+                error.classList.add('errorMessage');
                 form.parentNode.insertBefore(error, form);
             }
 
             const result = await response.json();
             const token = result.token;
             window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoké ?
-
+            console.log(token)
 
         } catch (error) {
             console.error('Erreur inattendue:', error);
@@ -55,9 +55,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-/* Compte de test pour Sophie Bluel
-
-sophie.bluel@test.tld
-
-S0phie 
-*/
+console.log("Compte de test pour Sophie Bluel sophie.bluel@test.tld S0phie ")

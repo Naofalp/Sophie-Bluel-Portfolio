@@ -240,12 +240,6 @@ li:hover {
 	color: #3D3D3D;
 }
 
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 3em;
-	margin-top: 4em;
-}
-
 .gallery {
 	width: 100%;
 	display: grid;
@@ -325,7 +319,6 @@ li:hover {
 	font-weight: 600;
 }
 
-/*CA MARCHE PAS, voir avec la police qui accepte?*/
 
 .login {
 	width: 30%;
@@ -372,6 +365,10 @@ li:hover {
 .login form a {
 	margin: 31px auto 0px auto;
 	text-decoration: underline;
+}
+
+.errorMessage {
+	color: red;
 }
 
 /* Top Bar Mode edition */
@@ -423,7 +420,45 @@ li:hover {
 	cursor: pointer;
 }
 
+.button-active {
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	text-align: center;
+	height: 37px;
+	padding: 0 1.6rem;
+	color: white;
+	background-color: #1D6154;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	margin: 0px 5px;
+	cursor: pointer;
+}
+
+
 /* gallery */
+
+.H2modal {
+    display: flex;
+    text-align: center;
+    margin-bottom: 7em;
+    margin-top: 9em;
+    justify-content: center;
+    gap: 30px;
+}
+
+.js-modal{
+	/*Display : none */
+	margin-right: -112px;
+    margin-top: 6px;
+}
+
+.js-modal i {
+	margin-right: 5px;
+    color: black;
+}
 
 figcaption {
 	color: #3D3D3D;
@@ -500,7 +535,8 @@ figcaption {
 	flex-wrap: wrap;
 	margin: 50px 90px 0px 90px;
 	padding-bottom: 40px;
-	width: 437px;		/*La taille de la gallery qui influe sur la modale avec les margin*/
+	width: 437px;
+	/*La taille de la gallery qui influe sur la modale avec les margin*/
 	border-bottom: 1px solid #B3B3B3;
 }
 
@@ -549,45 +585,45 @@ figcaption {
 	cursor: pointer;
 }
 
-/* Modal2 Add Photo*/ 
+/* Modal2 Add Photo*/
 
 .modal-add-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 494px;
-    border: none;
-    color: black;
-    border-radius: 10px;
-    font-size: 20px;
-    background-color: #FFFFFF;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 494px;
+	border: none;
+	color: black;
+	border-radius: 10px;
+	font-size: 20px;
+	background-color: #FFFFFF;
 	margin-top: 20px;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
-.js-modal-return{
-    cursor: pointer;
-    position: relative;
-    border: none;
-    color: black;
-    border-radius: 10px;
-    font-size: 20px;
-    background-color: #FFFFFF;
+.js-modal-return {
+	cursor: pointer;
+	position: relative;
+	border: none;
+	color: black;
+	border-radius: 10px;
+	font-size: 20px;
+	background-color: #FFFFFF;
 }
 
-.js-modal2-close{
-    cursor: pointer;
-    position: relative;
-    border: none;
-    color: black;
-    /* margin-left: auto; */
-    /* margin-top: 15px; */
-    /* margin-bottom: 10px; */
-    border-radius: 10px;
-    font-size: 20px;
-    background-color: #FFFFFF;
-    /* top: 5px; */
-    /* right: 35px; */
+.js-modal2-close {
+	cursor: pointer;
+	position: relative;
+	border: none;
+	color: black;
+	/* margin-left: auto; */
+	/* margin-top: 15px; */
+	/* margin-bottom: 10px; */
+	border-radius: 10px;
+	font-size: 20px;
+	background-color: #FFFFFF;
+	/* top: 5px; */
+	/* right: 35px; */
 }
 
 .modal-add-form {
@@ -615,38 +651,38 @@ figcaption {
 
 .form-group-photo i {
 	font-size: 76px;
-    color: #B9C5CC;
+	color: #B9C5CC;
 }
 
 .form-group-photo label {
-    width: 173px;
-    height: 36px;
-    border: none;
-    font-family: 'Work Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 36px;
-    text-align: center;
-    color: #306685;
-    background: #CBD6DC;
-    border-radius: 60px;
-    cursor: pointer;
+	width: 173px;
+	height: 36px;
+	border: none;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 36px;
+	text-align: center;
+	color: #306685;
+	background: #CBD6DC;
+	border-radius: 60px;
+	cursor: pointer;
 }
 
-.form-group-photo input{
+.form-group-photo input {
 	width: 163px;
-    height: 30px;
-    position: absolute;
-    top: 238px;
+	height: 30px;
+	position: absolute;
+	top: 238px;
 }
 
-.form-group-photo span{
+.form-group-photo span {
 	color: #444444;
-    font-size: 10px;
-    font-family: Work Sans;
-    font-weight: 350;
-    word-wrap: break-word;
+	font-size: 10px;
+	font-family: Work Sans;
+	font-weight: 350;
+	word-wrap: break-word;
 }
 
 .form-group-title,
@@ -684,6 +720,23 @@ figcaption {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.js-modal2-addButton {
+	width: 237px;
+	height: 36px;
+	border: none;
+	margin: 40px auto 40px auto;
+	font-family: Syne;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 36px;
+	text-align: center;
+	color: #ffffff;
+	background: #1d6154;
+	/*METTRE EN GRIS*/
+	border-radius: 60px;
+	cursor: pointer;
+}
 
 
 footer nav ul {

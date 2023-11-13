@@ -13,7 +13,7 @@ async function Loged() {
     }
 }
 const token = window.sessionStorage.getItem('token')
-console.log(token + ' : token')
+console.log('token : ' +token)
 
 // Logout
 function Logout() {
@@ -85,7 +85,8 @@ async function categoriesFilters() {
 
             const ButtonAll = document.createElement("button");
             ButtonAll.textContent = 'Tous';
-            ButtonAll.classList.add('button', 'tous');
+            ButtonAll.classList.add('button-active');
+            ButtonAll.setAttribute('id', 'ButtonAll')
             ButtonAll.dataset.categoryId = 0;
             ButtonAll.addEventListener('click', () => filterImages(0));
             filters.appendChild(ButtonAll)
@@ -98,6 +99,7 @@ async function categoriesFilters() {
                 button.textContent = `${category.name}`;
                 button.dataset.categoryId = `${category.id}`;
                 let IDcategory = button.dataset.categoryId
+                button.setAttribute('id', 'Button' + `${category.id}`)
                 console.log(IDcategory);
                 //Pour voir l'id relier au bouton
                 button.addEventListener('click', () => filterImages(IDcategory));
@@ -118,14 +120,22 @@ function resetGallery() {
 
 
 function filterImages(IDcategory) {
+    //Reset le button qui est déjà en surbrillance
+    const allButtons = document.querySelectorAll('.button');
+    allButtons.forEach(button => button.classList.remove('button-active'));
+
     resetGallery()
+
     fetch("http://localhost:5678/api/works")
         .then(reponse => reponse.json())
         .then(data => {
-            // SI le if marche toute la boucle en bas s'execute selon id.
-            //Trouver pourquoi ca marche quand je mets 1,2,3 mais pas quand je mets la classe qui renvoi aussi des numeros
+            console.log(typeof IDcategory)
+            //IDcategory renvoi une string, ParseInt transforme cette string en number
+            /*Si IDcategory=0 afficher TOUT sinon lance une boucle comme work avec la condition
+            que l'image se genere seulement si son id correspond à celle du bouton*/
             if ((parseInt(IDcategory)) === 0) {
                 works()
+                document.getElementById('ButtonAll').classList.add('button-active');
             }
             else {
                 for (let i = 0; i < data.length; i++) {
@@ -142,21 +152,11 @@ function filterImages(IDcategory) {
                         figure.appendChild(figcaption)
                     }
                 };
+                document.getElementById('Button' + IDcategory).classList.add('button-active');
+                document.getElementById('ButtonAll').classList.remove('button-active');
+                document.getElementById('ButtonAll').classList.add('button');
             }
-            ;
         })
-        
-    /*const allImages = gallery[0].querySelectorAll("figure");
-    allImages.forEach(figure => {
-        const imageCategory = figure.dataset.categoryId;
-        console.log(imageCategory)
-
-        if (imageCategory === categoryId || imageCategory === 0) {
-            figure.style.display = "block";
-        } else {
-            figure.style.display = "none";
-        
-    }); A REFAIRE */
 }
 
 async function main() {
@@ -175,4 +175,29 @@ Loged();
 Verif : 
 - Affichage different si connecté
 - Gallery mise a jour lors de changement
+- Gallery filtrée selon boutons
 */
+
+/* A faire 
+- Bouton de filtre en vert quand utilisé
+- Mettre le lien Modale à côté du titre
+- Remplir la fonction loged en consequence quand tout sera fini.
+- Valider W3C
+*/
+
+/* Pour les slide 
+Presentation du projet 
+De mes missions, screen du notion.site 
+La techno utilisée et sur quel logiciel (VScode)
+code validé par W3C, montré sur le site internet
+Faire un tour rapide du code pour montrer les balises semantiques et ce qui etait deja fourni de base 
+screener bout de code pour les expliquer (surtout le JS filter, works, modal, login...)
+Vu qu'on doit être log, montrer les accès avec/sans log et les conditions+messages mis en place .
+Montrer la fonction supprimer et Post qui met bien à jour le swagger.
+Dire ce que j'ai fait par exemple le CSS que j'ai gardé pour les bouton et input à chaque fois
+    ou les fois ou j'ai fait du CSS dans le JS pour que ca soit Dynamique justement
+Les endroits ou j'ai galere notamment la fonction filterimages ou j'avais commencé 
+    par vouloir cibler le nom puis je suis passé à l'id mais ca marchait pas car...(jai appris 
+    typeof+parseInt) et la fonction modal Preview
+Conclusion?
+ */

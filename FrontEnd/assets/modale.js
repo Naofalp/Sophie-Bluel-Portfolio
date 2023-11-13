@@ -2,6 +2,16 @@ let modal = null
 const modalGallerySection = document.querySelector('.js-modal-gallery');
 const modal1 = document.querySelector("#modal1");
 const modal2 = document.querySelector("#modal2");
+const modalOpen = document.getElementById("js-modal1")
+
+
+//Placer le lien modifier dans le H2
+const h2modal = document.createElement('div');
+h2modal.classList.add('H2modal');
+const h2title = document.getElementById('MyProjects');
+document.getElementById('portfolio').prepend(h2modal)
+h2modal.appendChild(h2title)
+h2modal.appendChild(modalOpen)
 
 
 const openModal = function (e) {
@@ -130,7 +140,7 @@ const openModalAdd = function (e) {
     document.getElementById("js-modal2-stop").addEventListener("click", stopPropagation)
 
     document.getElementById("js-modal-return").addEventListener("click", backToModal1)
-    document.getElementById("addPreview").addEventListener("change", addPreview) 
+    document.getElementById("addPreview").addEventListener("change", addPreview)
     //addPreview est déclenchée lorsque vous sélectionnez un fichier dans l'élément input de type fichier.
 };
 
@@ -164,9 +174,10 @@ const addPreview = function photoImage(photo) {
 }
 
 //Annulation de la fonction addPreview au clic de retour ou close.
-const cancelAddPreview = function() {
+const cancelAddPreview = function () {
     addPhotoInput.removeEventListener("change", addPreview);
-    
+
+    // Remet l'élément input à sa valeur par défaut
     addPhotoInput.value = null;
 
     Preview.src = "";
@@ -208,6 +219,13 @@ const closeModalAdd = function (e) {
 - La gallery s'affiche et se met a jour a la suppression
 - Une seule modale a la fois, lorsque on switch l'autre disparait et vice versa
 - Elles se ferment bien lorsqu'on clique dehors + bouton echap + croix
-- Action entreprenable seulement si authentifié
+- Action entreprenable seulement si authentifié, sinon message
+- Preview des image lorsque qu'on remplie l'input
+*/
 
+/*A faire :
+
+- Relier les input du form à leur data. correspondant
+- Bouton valider faire une Classe "if" image+titre+categorie !== "" il devient color:vert
+- Relier le bouton valider à un fetch POST et reset de la gallery
 */
