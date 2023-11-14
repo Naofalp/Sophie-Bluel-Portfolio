@@ -105,8 +105,8 @@ async function deleteImage(iconId) {
             // Autorized
             if (response.status === 204) {
                 console.log("SUPPRESION DU PROJET " + iconId)
-                modalGalleryWorks() //reset la gallery de la modal
-                works() //reset la gallery
+                modalGalleryWorks() //relance la gallery de la modal
+                works() //relance la gallery
             }
             // Unautorized
             else if (response.status === 401) {
@@ -193,6 +193,81 @@ const cancelAddPreview = function () {
 
 }
 
+//Ajout des projets - Boutton "valider" - Fonction addWorks 
+const addButton = document.getElementById("addButton");
+addButton.addEventListener("click", addWork);
+
+const imgForm = document.getElementById("addPreview");
+const titleForm = document.getElementById("titre");
+const categoryForm = document.getElementById("categorieBarre");
+
+imgForm.addEventListener("change", addButtonActive);
+titleForm.addEventListener("change", addButtonActive);
+categoryForm.addEventListener("change", addButtonActive);
+
+//Boutton "valider" passe au vert quand tout est rempli
+function addButtonActive() {
+    if (titleForm.value !== "" && categoryForm.value !== "" && imgForm.files[0] !== undefined) {
+        addButton.style.background = "#1D6154";
+    }
+    else {
+        addButton.style.background = "#A7A7A7";
+    }
+}
+
+async function addWork(event) {
+    event.preventDefault();
+
+    // Tout les champs doivent être remplis
+    if (titleForm.value === "" || categoryForm.value === "" || imgForm.files[0] === undefined) {
+        alert("Veuillez remplir tous les champs pour valider.");
+        return;
+    }
+    else {
+        try {
+            const formData = new FormData();
+            formData.append("image", imgForm.files[0]);
+            formData.append("title", titleForm.value);
+            formData.append("category", categoryForm.value);
+
+            const response = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData,
+            });
+
+            // Vérifie la réponse du serveur
+            if (response.status === 201) {
+
+                // Réinitialise le formulaire
+                resetForm();
+
+                // Ferme la modale
+                closeModalAdd();
+
+                await modalGalleryWorks() //relance la gallery de la modale
+                await works() //relance la gallery
+
+            } else if (response.status === 401) {
+                alert("Vous n'êtes pas autorisé à ajouter un projet");
+                window.location.href = "login.html";
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
+        }
+    }
+}
+
+//Reset le formulaire
+function resetForm(e) {
+    cancelAddPreview(e)
+    titleForm.value = "";
+    categoryForm.value = "";
+}
 
 //Fonction backtomodal1
 const backToModal1 = function (e) {
@@ -200,7 +275,6 @@ const backToModal1 = function (e) {
     closeModalAdd(e)
     openModal(e)
 }
-
 
 // Fermeture de la modale projet
 const closeModalAdd = function (e) {
@@ -215,17 +289,22 @@ const closeModalAdd = function (e) {
     closeModal(e)
 };
 
+addButtonActive()
+
+
 /*Verif : 
 - La gallery s'affiche et se met a jour a la suppression
 - Une seule modale a la fois, lorsque on switch l'autre disparait et vice versa
 - Elles se ferment bien lorsqu'on clique dehors + bouton echap + croix
 - Action entreprenable seulement si authentifié, sinon message
 - Preview des image lorsque qu'on remplie l'input
+- Relier les input du form à leur data. correspondant
+- Bouton valider faire une Classe "if" image+titre+categorie !== "" il devient color:vert ou l'invere
+tant qu'il est pas rempli il est dans une classe inactive grise.
+- Relier le bouton valider à un fetch POST et reset de la gallery SI tout(img;titre;cate) est rempli
+- Le form se reset et ca quitte la modal quand on valide le POST
 */
 
 /*A faire :
-
-- Relier les input du form à leur data. correspondant
-- Bouton valider faire une Classe "if" image+titre+categorie !== "" il devient color:vert
-- Relier le bouton valider à un fetch POST et reset de la gallery
+-cacher le bouton des images previewÒ
 */
