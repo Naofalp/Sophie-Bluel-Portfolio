@@ -2,21 +2,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const token = window.sessionStorage.getItem('token')
+    console.log('token : ' + token)
 
+    
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Empêche la soumission par défaut
         // Vérifie que les champs sont remplis
-        if (emailInput.value === '' || passwordInput.value === '') { 
+        if (emailInput.value === '' || passwordInput.value === '') {
             alert('Veuillez remplir tous les champs.');
             return;
         }
 
         // Vérifie si l'utilisateur est déjà connecté
-        if (window.sessionStorage.getItem('token') !== null) {
+        if (window.sessionStorage.getItem('token') !== null && window.sessionStorage.getItem('token' !== undefined)) {
             alert('Vous êtes déjà connecté');
             return;
         }
-
 
         try {
             const response = await fetch('http://localhost:5678/api/users/login', {
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const result = await response.json();
             const token = result.token;
-            window.sessionStorage.setItem('token', token); // Comment savoir si le token est stoké ?
+            window.sessionStorage.setItem('token', token);
             console.log(token)
 
         } catch (error) {
