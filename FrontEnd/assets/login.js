@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const token = window.sessionStorage.getItem('token')
     console.log('token : ' + token)
 
-    
+
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Empêche la soumission par défaut
         // Vérifie que les champs sont remplis
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Vérifie si l'utilisateur est déjà connecté
-        if (window.sessionStorage.getItem('token') !== null && window.sessionStorage.getItem('token' !== undefined)) {
+        if (window.sessionStorage.getItem('token') !== null) {
             alert('Vous êtes déjà connecté');
             return;
         }
@@ -36,18 +36,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Connexion réussie');
                 window.location = 'index.html'; //  Redirige l'utilisateur vers la page d'accueil
                 alert('Connexion réussie !');
+
+                // si c'est bon le token est stocké ELSE il reste null
+                const result = await response.json();
+                const token = result.token;
+                window.sessionStorage.setItem('token', token);
+                console.log(token)
             } else {
                 console.error('Échec de la connexion');
                 let error = document.createElement('p');
                 error.textContent = 'Identifiant ou mot de passe incorrect';
                 error.classList.add('errorMessage');
                 form.parentNode.insertBefore(error, form);
+                console.log(token + ' else')
             }
-
-            const result = await response.json();
-            const token = result.token;
-            window.sessionStorage.setItem('token', token);
-            console.log(token)
 
         } catch (error) {
             console.error('Erreur inattendue:', error);

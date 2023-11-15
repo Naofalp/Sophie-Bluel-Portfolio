@@ -1,13 +1,12 @@
 const gallery = document.getElementsByClassName('gallery');
 const portfoliosection = document.querySelector('.portfolio');
+const token = window.sessionStorage.getItem('token')
 
 // Affichage admin connecté
 async function Loged() {
-    if (window.sessionStorage.getItem('token') !== null) {
-        console.log('Token is null or undefined. Performing main() and ModalHide().');
-        main();
-        ModalHide();
-    } else if (window.sessionStorage.getItem('token' !== undefined)) {
+    console.log('token : ' + token)
+
+    if (token === null) {
         console.log('Token is null or undefined. Performing main() and ModalHide().');
         main();
         ModalHide();
@@ -18,8 +17,6 @@ async function Loged() {
         Logout();
     }
 }
-const token = window.sessionStorage.getItem('token')
-console.log('token : ' + token)
 
 // Logout
 function Logout() {
@@ -176,8 +173,9 @@ async function main() {
 }
 
 
-Loged();
-
+window.addEventListener('load', function () {
+    Loged();
+});
 
 
 
