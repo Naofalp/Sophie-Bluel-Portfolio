@@ -3,17 +3,23 @@ const portfoliosection = document.querySelector('.portfolio');
 
 // Affichage admin connecté
 async function Loged() {
-    if (window.sessionStorage.getItem('token') === null) {
+    if (window.sessionStorage.getItem('token') !== null) {
+        console.log('Token is null or undefined. Performing main() and ModalHide().');
         main();
+        ModalHide();
+    } else if (window.sessionStorage.getItem('token' !== undefined)) {
+        console.log('Token is null or undefined. Performing main() and ModalHide().');
+        main();
+        ModalHide();
     } else {
+        console.log('Token is defined. Performing works(), topBarBlack(), and Logout().');
         works();
         topBarBlack();
         Logout();
-        //Ajouter modale qui apparait
     }
 }
 const token = window.sessionStorage.getItem('token')
-console.log('token : ' +token)
+console.log('token : ' + token)
 
 // Logout
 function Logout() {
@@ -43,6 +49,11 @@ function topBarBlack() {
     div.appendChild(span);
 }
 
+//Non affichage de la Modal
+function ModalHide() {
+    const modal = document.getElementById("js-modal1")
+    modal.style.display = "none"
+}
 
 //Affichage des travaux
 async function works() {
@@ -165,22 +176,23 @@ async function main() {
 }
 
 
-
-//main();
-// works();
-//categoriesFilters();
 Loged();
+
+
+
+
+
 
 /*
 Verif : 
 - Affichage different si connecté
 - Gallery mise a jour lors de changement
 - Gallery filtrée selon boutons
+- boutton filtres en vert 
+- lien modale à cote du titre
 */
 
 /* A faire 
-- Bouton de filtre en vert quand utilisé
-- Mettre le lien Modale à côté du titre
 - Remplir la fonction loged en consequence quand tout sera fini.
 - Valider W3C
 */
