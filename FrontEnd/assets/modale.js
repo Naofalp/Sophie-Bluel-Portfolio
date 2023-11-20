@@ -151,8 +151,8 @@ Preview.style.display = "none";
 
 const addPreview = function photoImage(photo) {
     const file = photo.target.files[0];
-    console.log(file.size)
-    if (file && file.size <= 4194304) {
+    console.log(file.type)
+    if (file && file.type && file.type.indexOf('image') !== -1 && file.size <= 4194304) {
         var reader = new FileReader();
         reader.onload = function (photo) {
             Preview.src = photo.target.result;
@@ -165,7 +165,7 @@ const addPreview = function photoImage(photo) {
         };
         reader.readAsDataURL(file);
     } else {
-        alert("Le fichier dépasse la taille maximale autorisée de 4 Mo.");
+        alert("Le fichier n'est pas une image ou dépasse la taille maximale autorisée de 4 Mo.");
         Preview.style.display = "none";
     }
 
@@ -303,8 +303,5 @@ addButtonActive()
 tant qu'il est pas rempli il est dans une classe inactive grise.
 - Relier le bouton valider à un fetch POST et reset de la gallery SI tout(img;titre;cate) est rempli
 - Le form se reset et ca quitte la modal quand on valide le POST
-*/
-
-/*A faire :
--cacher le bouton des images previewÒ
+- Cacher le bouton des images preview
 */
