@@ -671,6 +671,7 @@ figcaption {
 }
 
 .form-group-photo input {
+	opacity: 0; /* Toujours cliquable mais invisible pour faire apparaitre seulement le label*/
 	width: 163px;
 	height: 30px;
 	position: absolute;
@@ -732,8 +733,9 @@ figcaption {
 	line-height: 36px;
 	text-align: center;
 	color: #ffffff;
-	background: #1d6154;
-	/*METTRE EN GRIS*/
+	background: #A7A7A7;
+	/* couleur classe active background: #1d6154;
+	METTRE EN vert*/
 	border-radius: 60px;
 	cursor: pointer;
 }

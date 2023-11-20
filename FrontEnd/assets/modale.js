@@ -290,18 +290,3 @@ const closeModalAdd = function (e) {
 };
 
 addButtonActive()
-
-
-/*Verif : 
-- La gallery s'affiche et se met a jour a la suppression
-- Une seule modale a la fois, lorsque on switch l'autre disparait et vice versa
-- Elles se ferment bien lorsqu'on clique dehors + bouton echap + croix
-- Action entreprenable seulement si authentifié, sinon message
-- Preview des image lorsque qu'on remplie l'input
-- Relier les input du form à leur data. correspondant
-- Bouton valider faire une Classe "if" image+titre+categorie !== "" il devient color:vert ou l'invere
-tant qu'il est pas rempli il est dans une classe inactive grise.
-- Relier le bouton valider à un fetch POST et reset de la gallery SI tout(img;titre;cate) est rempli
-- Le form se reset et ca quitte la modal quand on valide le POST
-- Cacher le bouton des images preview
-*/

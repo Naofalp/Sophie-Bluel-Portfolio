@@ -176,38 +176,3 @@ async function main() {
 window.addEventListener('load', function () {
     Loged();
 });
-
-
-
-
-
-/*
-Verif : 
-- Affichage different si connecté
-- Gallery mise a jour lors de changement
-- Gallery filtrée selon boutons
-- boutton filtres en vert 
-- lien modale à cote du titre
-*/
-
-/* A faire 
-- Remplir la fonction loged en consequence quand tout sera fini.
-- Valider W3C
-*/
-
-/* Pour les slide 
-Presentation du projet 
-De mes missions, screen du notion.site 
-La techno utilisée et sur quel logiciel (VScode)
-code validé par W3C, montré sur le site internet
-Faire un tour rapide du code pour montrer les balises semantiques et ce qui etait deja fourni de base 
-screener bout de code pour les expliquer (surtout le JS filter, works, modal, login...)
-Vu qu'on doit être log, montrer les accès avec/sans log et les conditions+messages mis en place .
-Montrer la fonction supprimer et Post qui met bien à jour le swagger.
-Dire ce que j'ai fait par exemple le CSS que j'ai gardé pour les bouton et input à chaque fois
-    ou les fois ou j'ai fait du CSS dans le JS pour que ca soit Dynamique justement
-Les endroits ou j'ai galere notamment la fonction filterimages ou j'avais commencé 
-    par vouloir cibler le nom puis je suis passé à l'id mais ca marchait pas car...(jai appris 
-    typeof+parseInt) et la fonction modal Preview
-Conclusion?
- */
