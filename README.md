@@ -1,3 +1,5 @@
+<img src="images/logo/Booki.png" alt="Logo de Booki" width="100">
+
 # Portfolio-architecte-sophie-bluel
 
 Code du projet 6 d'intégrateur web.
