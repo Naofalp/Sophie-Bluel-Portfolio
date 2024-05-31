@@ -54,5 +54,5 @@ Ayant terminé mon dernier projet avec un peu d'avance, je suis envoyé en renfo
 ## Information pour le lancer le code
 
 - Telecharger le dossier ou cloner le repository.
-- Lancer le serveur backend depuis son terminal en suivant les instruction du fichier Backend/ReadMe.
+- Lancer le serveur [Backend](Backend) depuis son terminal en suivant les instruction du fichier Backend/ReadMe.
 - Lancer le frontend depuis [index.html](FrontEnd/index.html) avec la fonction `go live` de l'Editeur de Code ou sélectionnez le fichier sur votre ordinateur puis faites un clic droit (ou double clic s'il s'agit d'un Mac) et choisissez « Ouvrir avec » Google Chrome, Microsoft Edge ou Firefox.
