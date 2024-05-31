@@ -1,4 +1,5 @@
-<img src="images/logo/Booki.png" alt="Logo de Booki" width="100">
+<img src="FrontEnd/assets/images/logo_sophie_bluel.png" alt="Logo de sophie bluel" width="100"> <img src="FrontEnd/assets/images/JavaScript-logo.png" alt="Logo Javascript" width="80">
+
 
 # Portfolio-architecte-sophie-bluel
 
